@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" ng-app="FMApp">
 <head>
   <meta charset="UTF-8">
@@ -20,13 +20,14 @@
   </style>
 </head>
 
-<body ng-controller="FileManagerCtr as FM">
+<body class="bg-dark" ng-controller="FileManagerCtr as FM">
   <div class="modal fade" id="createFolderModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h4>New Folder</h4>
         </div>
+
         <div class="modal-body">
           <p>Complete Path　{{FM.curFolderPath + FM.newFolderName + '/'}}</p>
           <label class="control-label">Folder Name</label><input class="form-control" autofocus ng-model="FM.newFolderName" />
@@ -123,20 +124,29 @@
 
   <div class="container">
     <div class="btn-toolbar">
-      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('download')" ng-click="FM.download()"><span class="glyphicon glyphicon-download"></span> Download</button>
-      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('delete')" ng-click="FM.delete()"><span class="glyphicon glyphicon-remove"></span> Delete</button>
-      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('move')" data-toggle="modal" data-target="#moveModal"><span class="glyphicon glyphicon-random"></span> Move</button>
-      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('rename')" data-toggle="modal" data-target="#renameModal"><span class="glyphicon glyphicon-font"></span> Rename</button>
-      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('archive')" data-toggle="modal" data-target="#archiveModal" ng-click="FM.updateArchiveName()"><span class="glyphicon glyphicon-download-alt"></span> Archive</button>
-      <button type="button" class="btn btn-default pull-right" ng-disabled="FM.btnDisabled('create_folder')" data-toggle="modal" data-target="#createFolderModal"><span class="glyphicon glyphicon-plus-sign"></span> New Folder</button>
-      <button type="button" class="btn btn-default pull-right" ng-disabled="FM.btnDisabled('upload_file')" data-toggle="modal" data-target="#uploadFileModal"><span class="glyphicon glyphicon-upload"></span> Upload</button>
+      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('download')" ng-click="FM.download()"><span class="glyphicon glyphicon-download"></span> Descargar</button>
+      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('delete')" ng-click="FM.delete()"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('move')" data-toggle="modal" data-target="#moveModal"><span class="glyphicon glyphicon-random"></span> Mover</button>
+      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('rename')" data-toggle="modal" data-target="#renameModal"><span class="glyphicon glyphicon-font"></span> Renombrar</button>
+      <button type="button" class="btn btn-default" ng-disabled="FM.btnDisabled('archive')" data-toggle="modal" data-target="#archiveModal" ng-click="FM.updateArchiveName()"><span class="glyphicon glyphicon-download-alt"></span> Comprimir</button>
+      <button type="button" class="btn btn-default pull-right" ng-disabled="FM.btnDisabled('create_folder')" data-toggle="modal" data-target="#createFolderModal"><span class="glyphicon glyphicon-plus-sign"></span> Nueva Carpeta</button>
+      <button type="button" class="btn btn-default pull-right" ng-disabled="FM.btnDisabled('upload_file')" data-toggle="modal" data-target="#uploadFileModal"><span class="glyphicon glyphicon-upload"></span>  Subir</button>
     </div>
 
     <ol class="breadcrumb">
       <span class="glyphicon glyphicon-home"></span>
       <li ng-repeat="p in FM.curBreadCrumbPaths"><a href={{p.path}}>{{p.name}}</a></li>
     </ol>
-
+    <div id="successAlert" class="alert alert-success" role="alert" style="display: none">
+      <span>{{FM.successData}}</span>
+  </div>
+    <div id="errorAlert" class="alert alert-danger" role="alert" style="display: none">
+      <button type="button" class="close" data-dismiss="alert" alert-label="Close">
+        <span aria-hidden="true">&times</span>
+      </button>
+      <strong>Error!</strong>
+      {{FM.errorData}}
+    </div>
     <table class="table table-hover table-striped">
       <thead>
         <tr class="sortable">
@@ -157,20 +167,6 @@
       </tr>
       </tbody>
     </table>
-
-    <div id="successAlert" class="alert alert-success" role="alert" style="display: none">
-      <span>{{FM.successData}}</span>
-    </div>
-
-    <div id="errorAlert" class="alert alert-danger" role="alert" style="display: none">
-      <button type="button" class="close" data-dismiss="alert" alert-label="Close">
-        <span aria-hidden="true">&times</span>
-      </button>
-      <strong>Error!</strong>
-      {{FM.errorData}}
-    </div>
-
   </div>
-
 </body>
 </html>

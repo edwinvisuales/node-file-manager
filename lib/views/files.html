@@ -33,9 +33,7 @@
                 {{file.name}}
             </div>
   </div>
-
 </div>
-
   <div class="row">
         
     <!-- <button type="button" id="download" class="btn btn-default" ng-disabled="FM.btnDisabled('download')" ng-click="FM.download()"><span class="glyphicon glyphicon-download"></span> Descargar</button>
@@ -55,14 +53,24 @@
 
     <!-- actions -->
     <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red">
+      <a class="btn-floating btn-large red">
           <i class="large material-icons">mode_edit</i>
         </a>
         <ul>
-          <li><a class="btn-floating blue" id="upload" ng-disabled="FM.btnDisabled('upload_file')" data-toggle="modal" data-target="#uploadFileModal"><i class="material-icons" >file_upload</i></a></li>
+          <!-- <li><a class="btn-floating blue" id="upload" ng-disabled="FM.btnDisabled('upload_file')" data-toggle="modal" data-target="#uploadFileModal"><i class="material-icons" >file_upload</i></a></li> -->
+          <li>
+            <a class="btn-floating green" id="createFolderModal" ng-disabled="FM.btnDisabled('create_folder')" data-toggle="modal" data-target="#createFolderModal" ><i class="material-icons">create_new_folder</i></a>
+          </li>
+              <li>
 
-          <li><a class="btn-floating green" id="createFolderModal" ng-disabled="FM.btnDisabled('create_folder')" data-toggle="modal" data-target="#createFolderModal" ><i class="material-icons">create_new_folder</i></a></li>
-
+                <form>
+                  <!-- accept="image/*"  method="POST" action="/" enctype="multipart/form-data" -->
+                  <input type="file" class="form-control" autofocus ng-model="FM.uploadFile">
+                <input type="file" style="visibility:hidden;" ng-model="FM.uploadFile"  onchange="boton1()" id="customFile">
+                <label class="btn-floating blue" for="customFile"><i class="material-icons">file_upload</i></label>
+                <submit id="boton1" type="submit" data-dismiss="modal" ng-disabled="!FM.uploadFile" ng-click="FM.upload()"></submit>
+              </form>
+              </li>
           <!-- <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
           <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
           <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
@@ -86,9 +94,11 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="uploadFileModal">
+  <!-- Modal - Upload file -->
+  <!-- - solo archivos pequeños por los momentos -->
+  <!-- <div class="modal fade" id="uploadFileModal">
     <div class="modal-content container">
-      <h4>Subir archivo - solo archivos pequeños por los momentos</h4>
+      <h4>Subir archivo </h4>
       <p>Subir a  {{FM.curFolderPath + FM.uploadFile.name}}</p>
       <div class="form-inline">
         <input type="file" class="form-control" autofocus ng-model="FM.uploadFile">
@@ -98,7 +108,8 @@
         <button type="button" class="close-upload btn btn-primary" data-dismiss="modal" ng-disabled="!FM.uploadFile" ng-click="FM.upload()">OK</button>
       </div>
     </div>
-  </div>
+  </div> -->
+  
   <div class="modal fade" id="renameModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -159,6 +170,13 @@
 <script src="js/1.4.5-angular.min.js"></script>
 <script src="js/angular-file.js"></script>
 <script src="js/app.js"></script>
+<script>
+  var boton1 = function() {
+      $(document).ready( function() {
+        $('#boton1').click()
+      });
+    };
+</script>
 </html>
     <!-- <ol class="breadcrumb">
       <span class="glyphicon glyphicon-home"></span>

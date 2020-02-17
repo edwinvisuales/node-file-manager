@@ -1,0 +1,35 @@
+
+    <!-- <ol class="breadcrumb">
+      <span class="glyphicon glyphicon-home"></span>
+      <li ng-repeat="p in FM.curBreadCrumbPaths"><a href={{p.path}}>{{p.name}}</a></li>
+    </ol>
+       <table class="table striped">
+      <thead>
+        <tr class="sortable">
+           <th>
+              < <label>
+                  <input type="checkbox" id="as" class="filled-in" value="" ng-model="FM.selectAll">
+                  <span></span>
+              </label>
+          </th>
+           <th>Tipo</th>
+          <th>Nombre</th>
+          <th>Tamaño</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr class="sortable" ng-repeat="file in FM.curFiles | orderBy:'folder'">
+        <td>
+          <label>
+            <input type="checkbox" class="filled-in" value="{{file.name}}" ng-model="file.selected">
+            <span></span>
+          </label>
+        </td>
+         <td ng-click="FM.clickFile(file)"><span class="{{file.folder ? 'glyphicon glyphicon-folder-open' : 'glyphicon glyphicon-file'}}"></span></td>
+        <td ng-click="FM.clickFile(file)"><a>{{file.name}}</a></td>
+        <td>{{file.humanSize}}</td>
+        <td>{{file.humanTime}}</td>
+      </tr>
+      </tbody>
+    </table> -->

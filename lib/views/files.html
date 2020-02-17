@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/materializecss.min.css">
   <link rel="stylesheet" href="css/custom.css">
+  <script src="js/1.4.5-angular.min.js"></script>
+<script src="js/angular-file.js"></script>
+<script src="js/app.js"></script>
 </head>
 <header>
     <nav class="indigo">
@@ -27,15 +30,14 @@
 <body class="" ng-controller="FileManagerCtr as FM">
   <div class="mt-2 small-container">
       <div class="row">
-            <div ng-repeat="file in FM.curFiles | orderBy:'folder'" class="card col s6 m2 m-lg-1 py-2 my-1">
+            <div ng-repeat="file in FM.curFiles | orderBy:'folder'" class="card col s6 m4 l2 m-lg-1 py-2 my-1">
               <div ng-click="FM.clickFile(file)">
-                <span class="{{file.folder ? 'fa fa-folder' : 'fa fa-file-alt'}}"></span>
-                {{file.name}}
+                <span class="material-icons">{{file.folder ? 'folder' : 'insert_drive_file'}}</span>
+                {{file.name.substr(0,4)}}...{{file.name.substr(5,8)}}
             </div>
   </div>
 </div>
   <div class="row">
-        
     <!-- <button type="button" id="download" class="btn btn-default" ng-disabled="FM.btnDisabled('download')" ng-click="FM.download()"><span class="glyphicon glyphicon-download"></span> Descargar</button>
         
           <button type="button" id="delete" ng-disabled="FM.btnDisabled('delete')" ng-click="FM.delete()"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
@@ -53,7 +55,7 @@
 
     <!-- actions -->
     <div class="fixed-action-btn">
-      <a class="btn-floating btn-large red">
+      <a class="btn-floating btn-large red mx-lg-5">
           <i class="large material-icons">mode_edit</i>
         </a>
         <ul>
@@ -63,13 +65,10 @@
           </li>
               <li>
 
-                <form>
                   <!-- accept="image/*"  method="POST" action="/" enctype="multipart/form-data" -->
-                  <input type="file" class="form-control" autofocus ng-model="FM.uploadFile">
                 <input type="file" style="visibility:hidden;" ng-model="FM.uploadFile"  onchange="boton1()" id="customFile">
                 <label class="btn-floating blue" for="customFile"><i class="material-icons">file_upload</i></label>
-                <submit id="boton1" type="submit" data-dismiss="modal" ng-disabled="!FM.uploadFile" ng-click="FM.upload()"></submit>
-              </form>
+                <submit id="boton1" type="submit" ng-click="FM.upload()"></submit>
               </li>
           <!-- <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
           <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
@@ -80,36 +79,22 @@
   <div class="container">
   <!-- Modal - Create Folder -->
   <div class="modal" id="modal-createFolder">
-    <div class="modal-content container">
-      <h4>Nueva carpeta</h4>
-      <p>Previo　{{FM.curFolderPath + FM.newFolderName + '/'}}</p>
-      <label class="control-label">Nombre de Carpeta</label><input class="form-control" autofocus ng-model="FM.newFolderName" />
+    <div class="modal-content">
+      <!-- <h4>Nueva carpeta</h4> -->
+      <!-- <p>Previo　{{FM.curFolderPath + FM.newFolderName + '/'}}</p> -->
+      <input id="nombre" class="form-control" autofocus ng-model="FM.newFolderName" />
+      <label for="nombre">Nombre de Carpeta</label>
       <div class="row modal-footer">
         <div class="col s6">
-            <button type="button" message="{{FM.successData}}" toast='click' class="btn btn-primary close-createFolder" data-dismiss="modal" ng-disabled="!FM.newFolderName" ng-click="FM.createFolder(FM.newFolderName)"><span class="fa fa-check"></button>
+            <button type="button" class="btn btn-primary close-createFolder" data-dismiss="modal" ng-disabled="!FM.newFolderName" ng-click="FM.createFolder(FM.newFolderName)"><span class="fa fa-check"></button>
         </div>
         <div class="col s6">
-          <button type="button" class="btn btn-default close-createFolder" data-dismiss="modal"><span class="fa fa-times"></span></button>
+          <button type="button" class="btn btn-default close-createFolder" data-dismiss="modal"><span class="material-icons">close</span> CERRAR</button>
         </div>
       </div>
     </div>
   </div>
-  <!-- Modal - Upload file -->
-  <!-- - solo archivos pequeños por los momentos -->
-  <!-- <div class="modal fade" id="uploadFileModal">
-    <div class="modal-content container">
-      <h4>Subir archivo </h4>
-      <p>Subir a  {{FM.curFolderPath + FM.uploadFile.name}}</p>
-      <div class="form-inline">
-        <input type="file" class="form-control" autofocus ng-model="FM.uploadFile">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="close-upload btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="close-upload btn btn-primary" data-dismiss="modal" ng-disabled="!FM.uploadFile" ng-click="FM.upload()">OK</button>
-      </div>
-    </div>
-  </div> -->
-  
+  <!-- Modal Rename -->
   <div class="modal fade" id="renameModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -126,6 +111,7 @@
       </div>
     </div>
   </div>
+  <!-- modal move -->
   <div class="modal fade" id="moveModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -142,6 +128,7 @@
       </div>
     </div>
   </div>
+  <!-- modal archive -->
   <div class="modal fade" id="archiveModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -167,9 +154,6 @@
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/1.0.0.materialize.min.js"></script>
 <script src="js/custom.js"></script>
-<script src="js/1.4.5-angular.min.js"></script>
-<script src="js/angular-file.js"></script>
-<script src="js/app.js"></script>
 <script>
   var boton1 = function() {
       $(document).ready( function() {
@@ -178,53 +162,3 @@
     };
 </script>
 </html>
-    <!-- <ol class="breadcrumb">
-      <span class="glyphicon glyphicon-home"></span>
-      <li ng-repeat="p in FM.curBreadCrumbPaths"><a href={{p.path}}>{{p.name}}</a></li>
-    </ol>
-
-    <div id="successAlert" class="alert alert-success" role="alert" style="display: none">
-      <span>{{FM.successData}}</span>
-    </div>
-
-    {{FM.successData} {{FM.errorData}}
-
-
-    <div id="errorAlert" class="alert alert-danger" role="alert" style="display: none">
-      <button type="button" class="close" data-dismiss="alert" alert-label="Close">
-        <span aria-hidden="true">&times</span>
-      </button>
-      <strong>Error!</strong>
-      {{FM.errorData}}
-    </div> -->
-
-        <!-- <table class="table striped">
-      <thead>
-        <tr class="sortable">
-           <th>
-              < <label>
-                  <input type="checkbox" id="as" class="filled-in" value="" ng-model="FM.selectAll">
-                  <span></span>
-              </label>
-          </th>
-           <th>Tipo</th>
-          <th>Nombre</th>
-          <th>Tamaño</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr class="sortable" ng-repeat="file in FM.curFiles | orderBy:'folder'">
-        <td>
-          <label>
-            <input type="checkbox" class="filled-in" value="{{file.name}}" ng-model="file.selected">
-            <span></span>
-          </label>
-        </td>
-         <td ng-click="FM.clickFile(file)"><span class="{{file.folder ? 'glyphicon glyphicon-folder-open' : 'glyphicon glyphicon-file'}}"></span></td>
-        <td ng-click="FM.clickFile(file)"><a>{{file.name}}</a></td>
-        <td>{{file.humanSize}}</td>
-        <td>{{file.humanTime}}</td>
-      </tr>
-      </tbody>
-    </table> -->

@@ -65,10 +65,11 @@
           </li>
               <li>
 
-                  <!-- accept="image/*"  method="POST" action="/" enctype="multipart/form-data" -->
-                <input type="file" style="visibility:hidden;" ng-model="FM.uploadFile"  onchange="boton1()" id="customFile">
-                <label class="btn-floating blue" for="customFile"><i class="material-icons">file_upload</i></label>
-                <submit id="boton1" type="submit" ng-click="FM.upload()"></submit>
+                  <form enctype="multipart/form-data">
+                    <input accept="image/*" type="file" multiple="multiple" style="visibility:hidden;" ng-model="FM.uploadFile"  onchange="boton1()" id="customFile">
+                    <label class="btn-floating blue" for="customFile"><i class="material-icons">file_upload</i></label>
+                    <submit id="boton1" type="submit" ng-click="FM.upload()"></submit>
+                  </form>
               </li>
           <!-- <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
           <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>

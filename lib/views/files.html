@@ -33,7 +33,7 @@
             <div ng-repeat="file in FM.curFiles | orderBy:'folder'" class="card col s6 m4 l2 m-lg-1 py-2 my-1">
               <div ng-click="FM.clickFile(file)">
                 <span class="material-icons">{{file.folder ? 'folder' : 'insert_drive_file'}}</span>
-                {{file.name.substr(0,4)}}...{{file.name.substr(5,8)}}
+                {{file.name.substr(0,13)}}
             </div>
   </div>
 </div>

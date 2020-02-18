@@ -4,7 +4,7 @@
   "description": "File manager web based on Koa and Angular.js",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -x node --harmony ./lib/index.js -p 80 -d 'C:/archivos'"
+    "dev": "nodemon -x node --harmony ./lib/index.js -p 80"
   },
   "bin": {
     "node-file-manager": "../node-file-manager/bin/node-file-manager.sh"

@@ -60,8 +60,8 @@
     <div class="row">
       <div ng-repeat="file in FM.curFiles | orderBy:'folder'" style="border-style: solid; border-color: black; border-radius: 10px;" class="card col s6 m4 l3 xl2  m-0 p-2">
         <div>
-          <a href="" ng-click="FM.clickFile(file)" class="waves-effect waves-blue">
-            <span class="{{file.folder ? 'red-text text-darken-4' : 'blue-text text-darken-4'}} material-icons left">{{file.folder ? 'folder' : 'photo_size_select_actual'}}</span>
+          <a href="" ng-click="check(file)" class="waves-effect waves-blue">
+            <span class="{{file.folder ? 'red-text text-darken-4' : 'blue-text text-darken-4'}} material-icons left">{{icon(file)}}</span>
             <span  class="grey-text text-darken-4">
               {{file.folder ? file.name.substr(0,12) : file.name.substr(0,8) + '...' + file.name.substr(name.length - 3)}}
             </span>
@@ -70,23 +70,31 @@
         </div>
       </div>
     </div>
-    <!-- actions -->
-    <div class="fixed-action-btn ">
-      <a class="btn-floating btn-large waves-effect waves-light blue mx-lg-5">
-          <i class="large material-icons">mode_edit</i>
-        </a>
-        <ul>
-        <!-- <li><a class="btn-floating blue" id="upload" ng-disabled="FM.btnDisabled('upload_file')" data-toggle="modal" data-target="#uploadFileModal"><i class="material-icons" >file_upload</i></a></li> -->
-        <!-- <li><a class="btn-floating waves-effect waves-light yellow darken-1"><i class="material-icons">format_quote</i></a></li> -->
-        <!-- <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li> -->
-        <!-- <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
-        <li><a class="btn-floating waves-effect waves-light green" id="createFolderModal" ng-disabled="FM.btnDisabled('create_folder')" data-toggle="modal" data-target="#createFolderModal" ><i class="material-icons">create_new_folder</i></a></li>
-        <li><a id="upload" class="btn-floating waves-effect waves-light red"><i class="material-icons">attach_file</i></a></li>
-      </ul>
-    </div>
   <!-- Modals -->
-
-  <div class="container">
+  <!-- Modal - Show Photo -->
+  <div class="modal" id="modal-showPhoto">
+    <div class="modal-content">
+      <h5>{{nombre.substr(0,20)}}</h5>
+      <div class="row">
+        <img src="{{'api' + ruta}}" class="col s12 materialboxed" alt="">
+        <a ng-click="FM.clickFile(archivo)" href="" class="mt-2 col s12 btn waves-effect waves-light">Descargar</a>
+      </div>
+    </div>
+  </div>
+  <!-- actions -->
+  <div class="fixed-action-btn ">
+    <a class="btn-floating btn-large waves-effect waves-light blue mx-lg-5">
+        <i class="large material-icons">mode_edit</i>
+      </a>
+      <ul>
+      <!-- <li><a class="btn-floating blue" id="upload" ng-disabled="FM.btnDisabled('upload_file')" data-toggle="modal" data-target="#uploadFileModal"><i class="material-icons" >file_upload</i></a></li> -->
+      <!-- <li><a class="btn-floating waves-effect waves-light yellow darken-1"><i class="material-icons">format_quote</i></a></li> -->
+      <!-- <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li> -->
+      <!-- <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
+      <li><a class="btn-floating waves-effect waves-light green" id="createFolderModal" ng-disabled="FM.btnDisabled('create_folder')" data-toggle="modal" data-target="#createFolderModal" ><i class="material-icons">create_new_folder</i></a></li>
+      <li><a id="upload" class="btn-floating waves-effect waves-light red"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+  </div>
     <!-- Modal - Create Folder -->
     <div class="modal" id="modal-createFolder">
       <div class="modal-content">
@@ -195,7 +203,6 @@
         </div>
       </div>
     </div>
-  </div>
 </body>
 
 </html>

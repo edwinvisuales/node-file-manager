@@ -15,21 +15,6 @@ width: 97%;
     width: 72%;
   }
 }
-input[class="fuck"] {
-  display: none !important;
-}
-
-.label1 {
-  color: white !important;
-  height: 60px !important;
-  width: 60px !important;
-  font-size: 20px !important;
-  display: flex!important;
-  justify-content: center!important;
-  align-items: center!important;
-  border-radius: 35px !important;
-  bottom: 20px!important;
-  right:20px !important;
-  position: fixed!important;
-  float: right!important;
+.loader1 {
+display:none;
 }

@@ -1,5 +1,4 @@
-
-    <!-- <ol class="breadcrumb">
+<ol class="breadcrumb">
       <span class="glyphicon glyphicon-home"></span>
       <li ng-repeat="p in FM.curBreadCrumbPaths"><a href={{p.path}}>{{p.name}}</a></li>
     </ol>
@@ -32,4 +31,11 @@
         <td>{{file.humanTime}}</td>
       </tr>
       </tbody>
-    </table> -->
+    </table>
+
+    <button type="button" id="download" class="btn btn-default" ng-disabled="FM.btnDisabled('download')" ng-click="FM.download()"><span class="glyphicon glyphicon-download"></span> Descargar</button>
+<button type="button" id="delete" ng-disabled="FM.btnDisabled('delete')" ng-click="FM.delete()"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+<button type="button" id="move" ng-disabled="FM.btnDisabled('move')" data-toggle="modal" data-target="#moveModal"><span class="glyphicon glyphicon-random"></span> Mover</button>
+<button type="button" id="rename" ng-disabled="FM.btnDisabled('rename')" data-toggle="modal" data-target="#renameModal"><span class="glyphicon glyphicon-font"></span> Renombrar</button>
+<button type="button" id="archive" ng-disabled="FM.btnDisabled('archive')" data-toggle="modal" data-target="#archiveModal" ng-click="FM.updateArchiveName()"><span class="glyphicon glyphicon-download-alt"></span> Comprimir</button>
+
